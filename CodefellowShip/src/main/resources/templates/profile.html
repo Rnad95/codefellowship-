@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<header th:replace="fragment/layout :: header"></header>
+
+<div>
+    <h3 th:text="${user.username}"></h3>
+    <fieldset class="field">
+        <legend>Information</legend>
+    <div class="" style="margin-top: 3px"><h5 th:text="'Username:  '+${user.username}"></h5>
+    </div>
+    <div class="" style="margin-top: 3px"><h5 th:text="'Name:  '+${user.firstName}+' '+${user.lastName}"></h5>
+    </div>
+    <div class="" style="margin-top: 3px"><h5 th:text="'Bio:  '+${user.bio}"></h5>
+    </div>
+    </fieldset>
+</div>
+<footer th:replace="fragment/layout :: footer"></footer>
+
+</body>
+</html>

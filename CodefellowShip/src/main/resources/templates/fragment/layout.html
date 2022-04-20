@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                    <div sec:authorize="isAnonymous()" class="ms-auto">
+                       <ul>
+                           <li sec:authorize="isAnonymous()" class="right-navbar">
+                               <a class="dropdown-item" href="/login">Login</a>
+                               <a class="dropdown-item" href="/signup">Sign Up</a></li>
+                        </ul>
+                    </div>
+                    <div sec:authorize="isAuthenticated()" class="ms-auto">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li sec:authorize="isAuthenticated()" class="right-navbar">
+                                    <a class="dropdown-item" href="/allProviders">Users</a>
+
+                                    <a class="dropdown-item" href="/myProfile">My profile</a>
+                                <a class="dropdown-item" href="/logout-process">Logout</a></li>
+                            </ul>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section th:fragment="post" class="post" style=" text-align: -webkit-center; font-size: medium">
+        <form class="post-form" action="/post" method="POST">
+            <h3>Create A New Post</h3>
+            <textarea name="body" rows="3" cols="60" th:placeholder="'What is your thinking'"></textarea>
+            <br>
+            <input type="submit" style="width: 150px;" value="Post" />
+        </form>
+    </section>
+
+
+    <section th:fragment="posts" class="posts">
+
+        <h2 class="toptitle" th:text="${user.firstName} + '\'s Posts'">User's Posts</h2>
+        <section th:each="post : ${user.posts}">
+            <fieldset>
+                <legend>Post</legend>
+                <h6 th:text="${user.firstName}+' '+${user.lastName}+' Post at '+${post.createdAt}"></h6>
+            <p style="font-size: 18px;" th:text="'Post: '+${post.body}"></p>
+            </fieldset>
+            <br>
+        </section>
+    </section>
+
+    <footer th:fragment="footer">
+        <div style="padding-top: 15px;">
+            © 2021 Copyright:
+            <a class="fw-bold" href="/">CodeFellow.com</a>
+        </div>
+    </footer>
+
+
+
+
+    <script th:src="@{/js/jquery.slim.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

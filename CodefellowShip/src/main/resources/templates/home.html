@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="fragment/layout :: header"></header>
+
+<section>
+    <section th:replace="fragment/layout :: post"></section>
+    <br><br>
+    <section th:replace="fragment/layout :: posts"></section>
+
+</section>
+
+<footer th:replace="fragment/layout :: footer"></footer>
+</body>
+</html>

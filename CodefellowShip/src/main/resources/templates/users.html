@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<header th:replace="fragment/layout :: header"></header>
+
+
+<table class="table1">
+    <thead>
+    <tr>
+        <th>Profile Pic</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th class="action text-center">View Profile</th>
+
+    </tr>
+    </thead>
+    <hr>
+    <tbody>
+
+    <tr class="candidates-list" th:each="user: ${SerProvList}">
+        <td class="title">
+            <div class="thumb">
+                <a th:href="'/profile/'+${user.id}">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD0viyykkQqnc2AUJKvTs9iMClRRvsL9Guvg&usqp=CAU" class="rounded-circle" style="width: 100px; height: 80px"
+                         alt="Avatar" /></a>
+            </div>
+        </td>
+        <td>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h5 class="mb-0"><span th:text="${user.username}"></span></h5>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h5 class="mb-0"><span th:text="${user.firstName}+' '+${user.lastName}">Name</span></h5>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td class="text-center">
+            <button class="btn-primary"><a th:href="@{'/users/' + ${user.id}}" class="text-white">View Profile</a></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="fragment/layout :: footer"></footer>
+
+</body>
+</html>
